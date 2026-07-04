@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { AppError } from "@/server/errors/app-error";
 
 export class UserService {
   /**
@@ -15,10 +16,10 @@ export class UserService {
 
     if (existingUser) {
       if (existingUser.email === data.email) {
-        throw new Error("Email is already in use by another user.");
+        throw new AppError("CONFLICT", "Email is already in use by another user.");
       }
       if (existingUser.username === data.username) {
-        throw new Error("Username is already taken.");
+        throw new AppError("CONFLICT", "Username is already taken.");
       }
     }
 

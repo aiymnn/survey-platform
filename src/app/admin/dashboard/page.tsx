@@ -19,7 +19,7 @@ export default function DashboardPage() {
               </div>
             </div>
             <p className="text-muted-foreground font-medium text-sm md:text-base">
-              Welcome back to your workspace. Here's what's happening today.
+              Welcome back to your workspace. Here&apos;s what&apos;s happening today.
             </p>
           </div>
           <div className="flex items-center gap-3">

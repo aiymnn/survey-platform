@@ -1,9 +1,9 @@
 "use server";
 
 import { auth } from "@/auth";
-import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { UserService } from "@/server/services/user-service";
+import { AppError } from "@/server/errors/app-error";
 
 export async function updateProfileSettings(formData: FormData) {
   try {
@@ -26,8 +26,14 @@ export async function updateProfileSettings(formData: FormData) {
 
     try {
       await UserService.updateProfile(session.user.id, { username, email });
-    } catch (dbError: any) {
-      return { error: dbError.message };
+    } catch (error) {
+      if (error instanceof AppError) {
+        return { error: error.message };
+      }
+      if (error instanceof Error) {
+        return { error: error.message };
+      }
+      return { error: "An unexpected error occurred." };
     }
 
     revalidatePath("/admin/settings");
