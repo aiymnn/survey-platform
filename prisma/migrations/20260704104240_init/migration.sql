@@ -2,6 +2,9 @@
 CREATE TYPE "UserStatus" AS ENUM ('ACTIVE', 'SUSPENDED');
 
 -- CreateEnum
+CREATE TYPE "SystemRole" AS ENUM ('USER', 'SUPERADMIN');
+
+-- CreateEnum
 CREATE TYPE "OrganizationRole" AS ENUM ('OWNER', 'ADMIN', 'SURVEY_MANAGER', 'ANALYST', 'VIEWER');
 
 -- CreateEnum
@@ -28,11 +31,13 @@ CREATE TYPE "ExportStatus" AS ENUM ('QUEUED', 'PROCESSING', 'READY', 'FAILED');
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
+    "username" TEXT,
     "name" TEXT,
     "email" TEXT NOT NULL,
     "passwordHash" TEXT,
     "image" TEXT,
     "status" "UserStatus" NOT NULL DEFAULT 'ACTIVE',
+    "role" "SystemRole" NOT NULL DEFAULT 'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -303,6 +308,9 @@ CREATE TABLE "DomainEvent" (
 
     CONSTRAINT "DomainEvent_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
