@@ -1,0 +1,12 @@
+# Progress Log - Survey Platform
+
+## Done
+- [2026-07-04] Infrastructure Setup (Docker Desktop, WSL Ubuntu, Postgres, Redis, Next.js dev containers running)
+- [2026-07-04] Database Schema (Prisma client generated, 21 tables created in PostgreSQL)
+- [2026-07-04] Registration API (Tested and confirmed hashed password creation via `/api/register`)
+- [2026-07-04] Authentication Backend (Configured NextAuth Credentials provider, comparison via bcryptjs)
+- [2026-07-04] Session Checks (Validated CSRF and callbacks via curl API testing)
+- [2026-07-04] NextAuth API Route Fix (Resolved import/export compilation issues in `route.ts`)
+- [2026-07-04] Layout & Login UI (Tailwind CSS v4 custom variables, custom `/login` page, form validation, `/admin` placeholder redirect target, verification complete)
+
+## In Progress
