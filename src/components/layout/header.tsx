@@ -3,7 +3,7 @@
 import { Bell, Moon, Sun, Menu, UserCircle, LogOut, Briefcase, Zap } from "lucide-react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
-import { signOut } from "next-auth/react"
+import { logout } from "@/app/actions/auth"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -17,9 +17,14 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useSidebar } from "@/components/ui/sidebar"
 
-export function Header() {
+export function Header({ user }: { user?: any }) {
   const { setTheme, theme } = useTheme()
   const { toggleSidebar } = useSidebar()
+
+  // Extract initials from name, default to 'U' if no name
+  const initials = user?.name 
+    ? user.name.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase() 
+    : 'U';
 
   return (
     <header className="sticky top-0 z-50 flex h-[var(--header-height)] w-full items-center border-b border-border/40 bg-background/60 backdrop-blur-xl px-4 lg:px-8 transition-all duration-300">
@@ -79,9 +84,9 @@ export function Header() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-9 w-9 rounded-full ml-1 p-0 hover:ring-2 hover:ring-primary/20 transition-all">
                 <Avatar className="h-9 w-9 border border-border/40">
-                  <AvatarImage src="" alt="@admin" />
+                  <AvatarImage src={user?.image || ""} alt={user?.name || "@user"} />
                   <AvatarFallback className="bg-gradient-to-br from-primary/10 to-indigo-500/10 text-primary font-semibold">
-                    AD
+                    {initials}
                   </AvatarFallback>
                 </Avatar>
               </Button>
@@ -89,34 +94,39 @@ export function Header() {
             <DropdownMenuContent className="w-64 rounded-xl shadow-xl border-border/40 p-2" align="end" forceMount>
               <DropdownMenuLabel className="font-normal p-2">
                 <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-semibold leading-none">Admin User</p>
+                  <p className="text-sm font-semibold leading-none">{user?.name || user?.email?.split('@')[0] || "User"}</p>
                   <p className="text-xs leading-none text-muted-foreground pt-1">
-                    admin@surveyplatform.com
+                    {user?.email || ""}
                   </p>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <div className="px-2 py-2 flex flex-col space-y-3 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2.5">
-                  <Briefcase className="h-4 w-4 text-primary" />
-                  <span className="font-medium">Acme Corp</span>
-                </div>
+                {user?.orgName && (
+                  <div className="flex items-center gap-2.5">
+                    <Briefcase className="h-4 w-4 text-primary" />
+                    <span className="font-medium">{user.orgName}</span>
+                  </div>
+                )}
                 <div className="flex items-center gap-2.5">
                   <UserCircle className="h-4 w-4 text-primary" />
-                  <span className="font-medium">Super Admin</span>
+                  <span className="font-medium">
+                    {user?.orgRole ? user.orgRole : (user?.role === "SUPERADMIN" ? "System Admin" : "Standard User")}
+                  </span>
                 </div>
               </div>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild className="cursor-pointer rounded-lg my-1 hover:bg-primary/5 transition-colors">
                 <Link href="/admin/settings">Profile Settings</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem 
-                onClick={() => signOut({ callbackUrl: "/login" })}
-                className="cursor-pointer rounded-lg text-destructive focus:text-destructive focus:bg-destructive/10 transition-colors"
-              >
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Log out</span>
-              </DropdownMenuItem>
+              <form action={logout}>
+                <DropdownMenuItem asChild>
+                  <button type="submit" className="w-full flex items-center cursor-pointer rounded-lg text-destructive focus:text-destructive focus:bg-destructive/10 transition-colors">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </button>
+                </DropdownMenuItem>
+              </form>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

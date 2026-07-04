@@ -15,6 +15,11 @@ enum UserStatus {
   SUSPENDED
 }
 
+enum SystemRole {
+  USER
+  SUPERADMIN
+}
+
 enum OrganizationRole {
   OWNER
   ADMIN
@@ -80,11 +85,13 @@ enum ExportStatus {
 
 model User {
   id           String       @id @default(uuid())
+  username     String?      @unique
   name         String?
   email        String       @unique
   passwordHash String?
   image        String?
   status       UserStatus   @default(ACTIVE)
+  role         SystemRole   @default(USER)
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 

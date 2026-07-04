@@ -22,7 +22,7 @@ export default function LoginForm() {
       : "An error occurred during authentication."
     : null;
 
-  const [email, setEmail] = useState("");
+  const [emailOrUsername, setEmailOrUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(defaultError);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +32,7 @@ export default function LoginForm() {
     setError(null);
     setIsLoading(true);
 
-    if (!email || !password) {
+    if (!emailOrUsername || !password) {
       setError("Please fill in all fields.");
       setIsLoading(false);
       return;
@@ -40,7 +40,7 @@ export default function LoginForm() {
 
     try {
       const res = await signIn("credentials", {
-        email,
+        email: emailOrUsername,
         password,
         redirect: false,
       });
@@ -80,16 +80,16 @@ export default function LoginForm() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="email">Email address</Label>
+            <Label htmlFor="email">Email or Username</Label>
             <Input
               id="email"
-              type="email"
-              placeholder="name@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="name@example.com or admin"
+              value={emailOrUsername}
+              onChange={(e) => setEmailOrUsername(e.target.value)}
               disabled={isLoading}
               required
-              autoComplete="email"
+              autoComplete="username"
               className="px-4 py-6 rounded-xl bg-background"
             />
           </div>
