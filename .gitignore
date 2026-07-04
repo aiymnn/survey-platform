@@ -42,4 +42,7 @@ next-env.d.ts
 
 /src/generated/prisma
 
-/progress.txt
+progress.txt
+
+/AGENTS.md
+.agents/*
