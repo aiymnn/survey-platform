@@ -1,5 +1,7 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import { Users, FileText, CheckCircle2, TrendingUp, ArrowUpRight } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { MetricCard } from "@/components/dashboard/metric-card";
+import { ActivityItem } from "@/components/dashboard/activity-item";
 
 export default function DashboardPage() {
   return (
@@ -25,44 +27,23 @@ export default function DashboardPage() {
       {/* Metric Cards */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { title: "Total Surveys", value: "12", icon: FileText, change: "+2 this week", trend: "up", color: "text-blue-500", bg: "bg-blue-500/10" },
-          { title: "Total Responses", value: "2,845", icon: Users, change: "+14% from last month", trend: "up", color: "text-primary", bg: "bg-primary/10" },
-          { title: "Completion Rate", value: "68%", icon: CheckCircle2, change: "+5.4% from last week", trend: "up", color: "text-emerald-500", bg: "bg-emerald-500/10" },
-          { title: "Active Campaigns", value: "3", icon: TrendingUp, change: "1 ending soon", trend: "neutral", color: "text-amber-500", bg: "bg-amber-500/10" }
+          { title: "Total Surveys", value: "12", icon: FileText, change: "+2 this week", trend: "up" as const, color: "text-blue-500", bg: "bg-blue-500/10" },
+          { title: "Total Responses", value: "2,845", icon: Users, change: "+14% from last month", trend: "up" as const, color: "text-primary", bg: "bg-primary/10" },
+          { title: "Completion Rate", value: "68%", icon: CheckCircle2, change: "+5.4% from last week", trend: "up" as const, color: "text-emerald-500", bg: "bg-emerald-500/10" },
+          { title: "Active Campaigns", value: "3", icon: TrendingUp, change: "1 ending soon", trend: "neutral" as const, color: "text-amber-500", bg: "bg-amber-500/10" }
         ].map((stat, i) => (
-          <div 
-            key={i} 
-            className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card p-6 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300"
-          >
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="flex flex-row items-center justify-between pb-4">
-              <h3 className="text-sm font-semibold text-muted-foreground tracking-wide">
-                {stat.title}
-              </h3>
-              <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${stat.bg}`}>
-                <stat.icon className={`h-5 w-5 ${stat.color}`} />
-              </div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold">{stat.value}</div>
-              <p className="mt-2 text-xs font-medium text-muted-foreground flex items-center gap-1">
-                <span className={stat.trend === "up" ? "text-emerald-500" : "text-amber-500"}>
-                  {stat.change}
-                </span>
-              </p>
-            </div>
-          </div>
+          <MetricCard key={i} {...stat} />
         ))}
       </div>
 
       {/* Charts / Main Content Area */}
       <div className="grid gap-6 md:grid-cols-7">
-        <div className="col-span-1 md:col-span-4 lg:col-span-5 flex flex-col rounded-2xl border border-border/50 bg-card shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-border/40">
-            <h3 className="text-lg font-semibold">Response Analytics</h3>
+        <Card className="col-span-1 md:col-span-4 lg:col-span-5 flex flex-col rounded-2xl shadow-sm border-border/50 overflow-hidden">
+          <CardHeader className="border-b border-border/40 pb-4">
+            <CardTitle className="text-lg">Response Analytics</CardTitle>
             <p className="text-sm text-muted-foreground">Responses over the last 30 days.</p>
-          </div>
-          <div className="p-6 flex-1 min-h-[300px] flex items-end gap-2 pt-12">
+          </CardHeader>
+          <CardContent className="p-6 flex-1 min-h-[300px] flex items-end gap-2 pt-12">
             {/* Fake Bar Chart */}
             {[40, 25, 45, 30, 60, 85, 40, 50, 70, 95, 60, 45].map((height, i) => (
               <div key={i} className="flex-1 group relative flex justify-center">
@@ -76,34 +57,25 @@ export default function DashboardPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
-        <div className="col-span-1 md:col-span-3 lg:col-span-2 flex flex-col rounded-2xl border border-border/50 bg-card shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-border/40">
-            <h3 className="text-lg font-semibold">Recent Activity</h3>
+        <Card className="col-span-1 md:col-span-3 lg:col-span-2 flex flex-col rounded-2xl shadow-sm border-border/50 overflow-hidden">
+          <CardHeader className="border-b border-border/40 pb-4">
+            <CardTitle className="text-lg">Recent Activity</CardTitle>
             <p className="text-sm text-muted-foreground">Latest interactions</p>
-          </div>
-          <div className="p-6 space-y-6">
+          </CardHeader>
+          <CardContent className="p-6 space-y-6">
             {[
               { text: "Customer Feedback Q3 published", time: "2h ago", color: "bg-blue-500" },
               { text: "50 new responses received", time: "4h ago", color: "bg-emerald-500" },
               { text: "Employee pulse survey closed", time: "1d ago", color: "bg-amber-500" },
               { text: "New team member invited", time: "2d ago", color: "bg-primary" },
             ].map((activity, i) => (
-              <div key={i} className="flex items-start gap-4">
-                <div className="relative flex h-3 w-3 mt-1.5 items-center justify-center">
-                  <span className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-20 ${activity.color}`}></span>
-                  <span className={`relative inline-flex h-2 w-2 rounded-full ${activity.color}`}></span>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">{activity.text}</p>
-                  <p className="text-xs text-muted-foreground">{activity.time}</p>
-                </div>
-              </div>
+              <ActivityItem key={i} {...activity} />
             ))}
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
