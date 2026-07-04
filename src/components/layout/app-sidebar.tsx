@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Home, LayoutDashboard, Settings, FileText, Users, ChevronRight, PanelLeftClose } from "lucide-react"
+import { LayoutDashboard, ChevronRight, PanelLeftClose } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -17,7 +17,6 @@ import {
   SidebarSeparator,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
 
 // Sample navigation items
 const data = {
@@ -37,17 +36,12 @@ const data = {
     //   url: "/admin/users",
     //   icon: Users,
     // },
-    {
-      title: "Settings",
-      url: "/admin/settings",
-      icon: Settings,
-    },
   ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
-  const { state, toggleSidebar } = useSidebar()
+  const { toggleSidebar } = useSidebar()
 
   return (
     <Sidebar variant="inset" collapsible="icon" className="border-r border-border/40 shadow-sm" {...props}>

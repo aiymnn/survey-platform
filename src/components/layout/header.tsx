@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useSidebar } from "@/components/ui/sidebar"
+import type { User } from "next-auth"
 
-export function Header({ user }: { user?: any }) {
+export function Header({ user }: { user?: User }) {
   const { setTheme, theme } = useTheme()
   const { toggleSidebar } = useSidebar()
 
