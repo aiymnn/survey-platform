@@ -132,12 +132,12 @@ export default function LoginForm() {
       </CardContent>
 
       <CardFooter className="flex justify-center pb-8 pt-2">
-        <div className="text-center text-sm text-muted-foreground font-medium">
+        {/* <div className="text-center text-sm text-muted-foreground font-medium">
           Don't have an account?{" "}
           <Link href="/register" className="text-primary hover:text-primary/80 font-bold transition-colors">
             Create an account
           </Link>
-        </div>
+        </div> */}
       </CardFooter>
     </Card>
   );

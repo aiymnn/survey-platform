@@ -1,22 +1,28 @@
-import { Users, FileText, CheckCircle2, TrendingUp, ArrowUpRight } from "lucide-react";
+import { Users, FileText, CheckCircle2, TrendingUp, ArrowUpRight, AlertTriangle } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { MetricCard } from "@/components/dashboard/metric-card";
 import { ActivityItem } from "@/components/dashboard/activity-item";
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-col gap-8 w-full max-w-7xl mx-auto">
-      {/* Header Section */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-            Overview
-          </h1>
-          <p className="text-muted-foreground font-medium text-sm md:text-base">
-            Welcome back to your workspace. Here's what's happening today.
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
+    <main className="h-full w-full p-4 lg:p-8 transition-opacity duration-500">
+      <div className="flex flex-col gap-8 w-full max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+                Overview
+              </h1>
+              <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-amber-500/10 text-amber-500 border-amber-500/20">
+                <AlertTriangle className="w-3 h-3 mr-1" /> Placeholder Data
+              </div>
+            </div>
+            <p className="text-muted-foreground font-medium text-sm md:text-base">
+              Welcome back to your workspace. Here's what's happening today.
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
           <button className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300">
             Create Survey
             <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -77,6 +83,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+      </div>
+    </main>
   );
 }

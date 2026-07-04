@@ -27,16 +27,16 @@ const data = {
       url: "/admin/dashboard",
       icon: LayoutDashboard,
     },
-    {
-      title: "Surveys",
-      url: "/admin/surveys",
-      icon: FileText,
-    },
-    {
-      title: "Users",
-      url: "/admin/users",
-      icon: Users,
-    },
+    // {
+    //   title: "Surveys",
+    //   url: "/admin/surveys",
+    //   icon: FileText,
+    // },
+    // {
+    //   title: "Users",
+    //   url: "/admin/users",
+    //   icon: Users,
+    // },
     {
       title: "Settings",
       url: "/admin/settings",
