@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "db:migrate": "prisma migrate deploy",
     "db:generate": "prisma generate",
-    "db:seed": "tsx prisma/seed.ts"
+    "db:seed": "tsx --env-file=.env prisma/seed.ts"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -25,6 +25,10 @@
     ]
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@hookform/resolvers": "^5.4.0",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@radix-ui/react-slot": "^1.3.0",
@@ -32,6 +36,7 @@
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.4.0",
     "dotenv": "^17.4.2",
     "lucide-react": "^1.23.0",
     "next": "16.2.10",
@@ -41,6 +46,8 @@
     "radix-ui": "^1.6.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-hook-form": "^7.81.0",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
@@ -55,18 +62,18 @@
     "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.7",
+    "jsdom": "^24.1.1",
     "lint-staged": "^15.2.11",
     "prettier": "^3.4.2",
     "prisma": "^7.8.0",
     "tailwindcss": "^4",
     "tsx": "^4.23.0",
     "typescript": "^5",
-    "@vitejs/plugin-react": "^4.3.1",
-    "jsdom": "^24.1.1",
     "vitest": "^2.0.5"
   },
   "prisma": {

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { LayoutDashboard, ChevronRight, PanelLeftClose } from "lucide-react";
+import { LayoutDashboard, ChevronRight, PanelLeftClose, FileText, Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -26,16 +26,16 @@ const data = {
       url: "/admin/dashboard",
       icon: LayoutDashboard,
     },
-    // {
-    //   title: "Surveys",
-    //   url: "/admin/surveys",
-    //   icon: FileText,
-    // },
-    // {
-    //   title: "Users",
-    //   url: "/admin/users",
-    //   icon: Users,
-    // },
+    {
+      title: "Surveys",
+      url: "/admin/surveys",
+      icon: FileText,
+    },
+    {
+      title: "Users",
+      url: "/admin/users",
+      icon: Users,
+    },
   ],
 };
 

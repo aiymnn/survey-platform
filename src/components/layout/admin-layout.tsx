@@ -20,7 +20,7 @@ export function AdminLayout({
         <div className="flex flex-1 overflow-hidden relative">
           <AppSidebar />
           <SidebarInset className="flex-1 overflow-auto bg-muted/20 peer-data-[variant=inset]:min-h-0">
-            <main className="h-full w-full p-4 lg:p-8 transition-opacity duration-500">
+            <main className="flex-1 w-full transition-opacity duration-500">
               {children}
             </main>
           </SidebarInset>

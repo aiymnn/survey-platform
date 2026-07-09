@@ -9,11 +9,11 @@ import {
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { MetricCard } from "@/components/dashboard/metric-card";
 import { ActivityItem } from "@/components/dashboard/activity-item";
+import { PageLayout } from "@/components/layout/page-layout";
 
 export default function DashboardPage() {
   return (
-    <main className="h-full w-full p-4 lg:p-8 transition-opacity duration-500">
-      <div className="flex flex-col gap-8 w-full max-w-7xl mx-auto">
+    <PageLayout>
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
@@ -148,7 +148,6 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
         </div>
-      </div>
-    </main>
+    </PageLayout>
   );
 }
