@@ -6,7 +6,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { AlertCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -14,11 +21,11 @@ import { Button } from "@/components/ui/button";
 export default function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   const urlError = searchParams.get("error");
-  const defaultError = urlError 
-    ? urlError === "CredentialsSignin" 
-      ? "Invalid email or password." 
+  const defaultError = urlError
+    ? urlError === "CredentialsSignin"
+      ? "Invalid email or password."
       : "An error occurred during authentication."
     : null;
 
@@ -97,7 +104,10 @@ export default function LoginForm() {
           <div className="space-y-2">
             <div className="flex justify-between items-center">
               <Label htmlFor="password">Password</Label>
-              <Link href="#" className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors">
+              <Link
+                href="#"
+                className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+              >
                 Forgot password?
               </Link>
             </div>

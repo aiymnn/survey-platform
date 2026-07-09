@@ -1,31 +1,31 @@
-import { prisma } from '../src/lib/prisma';
-import bcrypt from 'bcryptjs';
+import { prisma } from "../src/lib/prisma";
+import bcrypt from "bcryptjs";
 
 async function main() {
-  const passwordHash = await bcrypt.hash('admin', 10);
+  const passwordHash = await bcrypt.hash("admin", 10);
 
   const adminUser = await prisma.user.upsert({
-    where: { email: 'admin@example.com' },
+    where: { email: "admin@example.com" },
     update: {
-      username: 'admin',
-      role: 'SUPERADMIN',
+      username: "admin",
+      role: "SUPERADMIN",
       passwordHash,
     },
     create: {
-      email: 'admin@example.com',
-      username: 'admin',
-      name: 'Super Admin',
-      role: 'SUPERADMIN',
+      email: "admin@example.com",
+      username: "admin",
+      name: "Super Admin",
+      role: "SUPERADMIN",
       passwordHash,
     },
   });
 
   const org = await prisma.organization.upsert({
-    where: { slug: 'acme-corp' },
-    update: { name: 'Acme Corp' },
+    where: { slug: "acme-corp" },
+    update: { name: "Acme Corp" },
     create: {
-      name: 'Acme Corp',
-      slug: 'acme-corp',
+      name: "Acme Corp",
+      slug: "acme-corp",
     },
   });
 
@@ -37,12 +37,12 @@ async function main() {
       },
     },
     update: {
-      role: 'OWNER',
+      role: "OWNER",
     },
     create: {
       organizationId: org.id,
       userId: adminUser.id,
-      role: 'OWNER',
+      role: "OWNER",
     },
   });
 

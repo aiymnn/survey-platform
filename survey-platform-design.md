@@ -56,28 +56,28 @@ This makes the runtime safe and avoids schema migration every time a user edits 
 
 ### 3.1 Goals
 
-| Goal | Description |
-|---|---|
-| Modern survey builder | Drag/drop or structured builder for sections, questions, options, validation, and logic. |
-| Versioned publishing | Draft edits should not corrupt already published surveys or existing responses. |
+| Goal                    | Description                                                                                                                |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Modern survey builder   | Drag/drop or structured builder for sections, questions, options, validation, and logic.                                   |
+| Versioned publishing    | Draft edits should not corrupt already published surveys or existing responses.                                            |
 | Flexible question types | Support text, number, date, radio, checkbox, dropdown, matrix, ranking, rating, file upload, consent, and computed fields. |
-| Public survey runtime | Respondents can answer surveys through public links or private tokens. |
-| Skip logic | Support conditional display, branching, default values, and computed behavior. |
-| Participants/tokens | Invite specific participants using unique secure tokens. |
-| Reporting | Summary dashboard, response table, filters, charts, exports. |
-| RBAC | Role-based access control for admin users. |
-| Auditability | Track important changes and admin actions. |
-| Extensibility | Build modules cleanly so custom plugins/integrations are possible later. |
+| Public survey runtime   | Respondents can answer surveys through public links or private tokens.                                                     |
+| Skip logic              | Support conditional display, branching, default values, and computed behavior.                                             |
+| Participants/tokens     | Invite specific participants using unique secure tokens.                                                                   |
+| Reporting               | Summary dashboard, response table, filters, charts, exports.                                                               |
+| RBAC                    | Role-based access control for admin users.                                                                                 |
+| Auditability            | Track important changes and admin actions.                                                                                 |
+| Extensibility           | Build modules cleanly so custom plugins/integrations are possible later.                                                   |
 
 ### 3.2 Non-Goals for Version 1
 
-| Non-Goal | Reason |
-|---|---|
-| 100% LimeSurvey feature parity | LimeSurvey has years of legacy features. Build core features first. |
-| Dynamic database tables per survey | Harder to maintain with Prisma/Next.js. Use normalized + JSONB. |
-| Microservices from day one | Adds complexity before product-market/feature stability. |
-| Advanced plugin marketplace | Start with internal module hooks/events first. |
-| Real-time collaborative builder | Can be added later after basic builder is stable. |
+| Non-Goal                           | Reason                                                              |
+| ---------------------------------- | ------------------------------------------------------------------- |
+| 100% LimeSurvey feature parity     | LimeSurvey has years of legacy features. Build core features first. |
+| Dynamic database tables per survey | Harder to maintain with Prisma/Next.js. Use normalized + JSONB.     |
+| Microservices from day one         | Adds complexity before product-market/feature stability.            |
+| Advanced plugin marketplace        | Start with internal module hooks/events first.                      |
+| Real-time collaborative builder    | Can be added later after basic builder is stable.                   |
 
 ---
 
@@ -85,20 +85,20 @@ This makes the runtime safe and avoids schema migration every time a user edits 
 
 ### 4.1 Core Application
 
-| Layer | Recommended Tool | Reason |
-|---|---|---|
-| Framework | Next.js App Router | Full-stack React framework with Server Components, Route Handlers, layouts, and modern routing. |
-| Language | TypeScript | Type safety for survey schema, question configs, API responses, and logic rules. |
-| UI | Tailwind CSS + shadcn/ui | Fast admin dashboard development and consistent component system. |
-| Forms | React Hook Form + Zod | Strong validation and clean dynamic form handling. |
-| Database | PostgreSQL | Reliable relational DB with JSONB support for flexible survey metadata. |
-| ORM | Prisma | Type-safe database access and schema management. |
-| Authentication | Auth.js / NextAuth | OAuth/email/session support for Next.js apps. |
-| Background Jobs | BullMQ + Redis | Exports, email invitations, analytics processing. Optional for V1. |
-| File Storage | S3-compatible storage | Uploaded files, exports, logos, attachments. |
-| Charts | Recharts / Tremor / ECharts | Reporting dashboard charts. |
-| Testing | Vitest, Playwright, Testing Library | Unit, integration, and end-to-end tests. |
-| Deployment | Docker + VPS or Vercel + managed DB | VPS gives control; Vercel gives easier deployment. |
+| Layer           | Recommended Tool                    | Reason                                                                                          |
+| --------------- | ----------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Framework       | Next.js App Router                  | Full-stack React framework with Server Components, Route Handlers, layouts, and modern routing. |
+| Language        | TypeScript                          | Type safety for survey schema, question configs, API responses, and logic rules.                |
+| UI              | Tailwind CSS + shadcn/ui            | Fast admin dashboard development and consistent component system.                               |
+| Forms           | React Hook Form + Zod               | Strong validation and clean dynamic form handling.                                              |
+| Database        | PostgreSQL                          | Reliable relational DB with JSONB support for flexible survey metadata.                         |
+| ORM             | Prisma                              | Type-safe database access and schema management.                                                |
+| Authentication  | Auth.js / NextAuth                  | OAuth/email/session support for Next.js apps.                                                   |
+| Background Jobs | BullMQ + Redis                      | Exports, email invitations, analytics processing. Optional for V1.                              |
+| File Storage    | S3-compatible storage               | Uploaded files, exports, logos, attachments.                                                    |
+| Charts          | Recharts / Tremor / ECharts         | Reporting dashboard charts.                                                                     |
+| Testing         | Vitest, Playwright, Testing Library | Unit, integration, and end-to-end tests.                                                        |
+| Deployment      | Docker + VPS or Vercel + managed DB | VPS gives control; Vercel gives easier deployment.                                              |
 
 ### 4.2 Recommended Initial Architecture
 
@@ -285,15 +285,15 @@ Rule: **UI should not contain business logic.** Business rules should live in se
 
 ### Example roles
 
-| Role | Description |
-|---|---|
-| Super Admin | Full system access. |
-| Organization Owner | Full access inside one organization. |
-| Admin | Manage users and surveys in organization. |
-| Survey Manager | Create/edit/publish surveys. |
-| Analyst | View reports and export responses. |
-| Viewer | Read-only access. |
-| Respondent | Public/private survey participant, usually not an admin user. |
+| Role               | Description                                                   |
+| ------------------ | ------------------------------------------------------------- |
+| Super Admin        | Full system access.                                           |
+| Organization Owner | Full access inside one organization.                          |
+| Admin              | Manage users and surveys in organization.                     |
+| Survey Manager     | Create/edit/publish surveys.                                  |
+| Analyst            | View reports and export responses.                            |
+| Viewer             | Read-only access.                                             |
+| Respondent         | Public/private survey participant, usually not an admin user. |
 
 ---
 
@@ -310,13 +310,13 @@ Rule: **UI should not contain business logic.** Business rules should live in se
 
 ### Survey statuses
 
-| Status | Meaning |
-|---|---|
-| Draft | Editable, not public. |
+| Status    | Meaning                                |
+| --------- | -------------------------------------- |
+| Draft     | Editable, not public.                  |
 | Published | Public/runtime can use active version. |
-| Paused | Not accepting new responses. |
-| Closed | Ended, no new responses. |
-| Archived | Hidden from normal workflow. |
+| Paused    | Not accepting new responses.           |
+| Closed    | Ended, no new responses.               |
+| Archived  | Hidden from normal workflow.           |
 
 ### Versioning rule
 
@@ -384,41 +384,41 @@ Use a registry pattern:
 ```ts
 export const questionTypeRegistry = {
   short_text: {
-    label: 'Short Text',
+    label: "Short Text",
     builderComponent: ShortTextBuilder,
     runtimeComponent: ShortTextRuntime,
     reportComponent: ShortTextReport,
     validateAnswer: validateShortText,
   },
   single_choice: {
-    label: 'Single Choice',
+    label: "Single Choice",
     builderComponent: SingleChoiceBuilder,
     runtimeComponent: SingleChoiceRuntime,
     reportComponent: SingleChoiceReport,
     validateAnswer: validateSingleChoice,
   },
-}
+};
 ```
 
 ### Recommended question types for V1
 
-| Type | Description | Value format |
-|---|---|---|
-| `short_text` | Single-line text | `{ "text": "Ali" }` |
-| `long_text` | Multi-line text | `{ "text": "Feedback..." }` |
-| `number` | Numeric input | `{ "number": 10 }` |
-| `date` | Date input | `{ "date": "2026-07-03" }` |
-| `single_choice` | Radio/dropdown | `{ "optionId": "opt_1" }` |
-| `multiple_choice` | Checkbox | `{ "optionIds": ["opt_1", "opt_2"] }` |
-| `rating` | Rating scale | `{ "rating": 4 }` |
-| `nps` | Net Promoter Score | `{ "score": 9 }` |
-| `matrix_single` | Matrix with one answer per row | `{ "rows": { "row1": "col2" } }` |
-| `matrix_multi` | Matrix with multiple answers per row | `{ "rows": { "row1": ["col1", "col3"] } }` |
-| `ranking` | Rank options | `{ "order": ["opt_3", "opt_1"] }` |
-| `file_upload` | File upload | `{ "fileIds": ["file_123"] }` |
-| `consent` | Agreement checkbox | `{ "accepted": true }` |
-| `display_text` | Instruction text, no answer | `{}` |
-| `computed` | Hidden/computed value | `{ "value": 123 }` |
+| Type              | Description                          | Value format                               |
+| ----------------- | ------------------------------------ | ------------------------------------------ |
+| `short_text`      | Single-line text                     | `{ "text": "Ali" }`                        |
+| `long_text`       | Multi-line text                      | `{ "text": "Feedback..." }`                |
+| `number`          | Numeric input                        | `{ "number": 10 }`                         |
+| `date`            | Date input                           | `{ "date": "2026-07-03" }`                 |
+| `single_choice`   | Radio/dropdown                       | `{ "optionId": "opt_1" }`                  |
+| `multiple_choice` | Checkbox                             | `{ "optionIds": ["opt_1", "opt_2"] }`      |
+| `rating`          | Rating scale                         | `{ "rating": 4 }`                          |
+| `nps`             | Net Promoter Score                   | `{ "score": 9 }`                           |
+| `matrix_single`   | Matrix with one answer per row       | `{ "rows": { "row1": "col2" } }`           |
+| `matrix_multi`    | Matrix with multiple answers per row | `{ "rows": { "row1": ["col1", "col3"] } }` |
+| `ranking`         | Rank options                         | `{ "order": ["opt_3", "opt_1"] }`          |
+| `file_upload`     | File upload                          | `{ "fileIds": ["file_123"] }`              |
+| `consent`         | Agreement checkbox                   | `{ "accepted": true }`                     |
+| `display_text`    | Instruction text, no answer          | `{}`                                       |
+| `computed`        | Hidden/computed value                | `{ "value": 123 }`                         |
 
 ### Question config examples
 
@@ -491,18 +491,18 @@ export const questionTypeRegistry = {
 
 ### Operators
 
-| Operator | Meaning |
-|---|---|
-| `equals` | Answer equals value. |
-| `not_equals` | Answer does not equal value. |
-| `contains` | Multiple-choice answer contains option. |
-| `not_contains` | Multiple-choice answer does not contain option. |
-| `greater_than` | Numeric answer greater than value. |
-| `less_than` | Numeric answer less than value. |
-| `between` | Numeric/date answer in range. |
-| `is_empty` | No answer. |
-| `is_not_empty` | Has answer. |
-| `matches_regex` | Text answer matches regex. |
+| Operator        | Meaning                                         |
+| --------------- | ----------------------------------------------- |
+| `equals`        | Answer equals value.                            |
+| `not_equals`    | Answer does not equal value.                    |
+| `contains`      | Multiple-choice answer contains option.         |
+| `not_contains`  | Multiple-choice answer does not contain option. |
+| `greater_than`  | Numeric answer greater than value.              |
+| `less_than`     | Numeric answer less than value.                 |
+| `between`       | Numeric/date answer in range.                   |
+| `is_empty`      | No answer.                                      |
+| `is_not_empty`  | Has answer.                                     |
+| `matches_regex` | Text answer matches regex.                      |
 
 ### Condition structure
 
@@ -518,7 +518,9 @@ Support `all` and `any` groups:
       ]
     },
     {
-      "questionId": "q_staff", "operator": "equals", "value": true
+      "questionId": "q_staff",
+      "operator": "equals",
+      "value": true
     }
   ]
 }
@@ -568,25 +570,25 @@ flowchart TD
 
 ### Runtime modes
 
-| Mode | Description |
-|---|---|
-| Public anonymous | Anyone with link can answer. |
-| Public with captcha | Anyone with link, but bot protection. |
-| Private token | Only invited participants with token. |
-| Authenticated | User must log in before answering. |
-| Kiosk mode | Same device can submit multiple responses. |
+| Mode                | Description                                |
+| ------------------- | ------------------------------------------ |
+| Public anonymous    | Anyone with link can answer.               |
+| Public with captcha | Anyone with link, but bot protection.      |
+| Private token       | Only invited participants with token.      |
+| Authenticated       | User must log in before answering.         |
+| Kiosk mode          | Same device can submit multiple responses. |
 
 ### Response lifecycle
 
-| Status | Meaning |
-|---|---|
-| Started | Response session created. |
-| In Progress | Some answers saved. |
-| Submitted | Final response submitted. |
-| Screened Out | Respondent failed screening/qualification. |
-| Quota Full | Respondent blocked because quota is reached. |
-| Abandoned | Started but not submitted after timeout. |
-| Deleted | Soft-deleted by admin. |
+| Status       | Meaning                                      |
+| ------------ | -------------------------------------------- |
+| Started      | Response session created.                    |
+| In Progress  | Some answers saved.                          |
+| Submitted    | Final response submitted.                    |
+| Screened Out | Respondent failed screening/qualification.   |
+| Quota Full   | Respondent blocked because quota is reached. |
+| Abandoned    | Started but not submitted after timeout.     |
+| Deleted      | Soft-deleted by admin.                       |
 
 ---
 
@@ -612,15 +614,15 @@ flowchart TD
 
 ### Invitation statuses
 
-| Status | Meaning |
-|---|---|
-| Pending | Created but not sent. |
-| Sent | Invitation email sent. |
-| Opened | Email opened if tracking is enabled. |
-| Started | Participant opened survey. |
-| Completed | Participant submitted response. |
-| Bounced | Email failed. |
-| Unsubscribed | Participant opted out. |
+| Status       | Meaning                              |
+| ------------ | ------------------------------------ |
+| Pending      | Created but not sent.                |
+| Sent         | Invitation email sent.               |
+| Opened       | Email opened if tracking is enabled. |
+| Started      | Participant opened survey.           |
+| Completed    | Participant submitted response.      |
+| Bounced      | Email failed.                        |
+| Unsubscribed | Participant opted out.               |
 
 ---
 
@@ -668,15 +670,15 @@ flowchart TD
 
 ### Report types
 
-| Report | Description |
-|---|---|
-| Overview | Response count, completion rate, average duration. |
-| Question summary | Aggregated answers per question. |
-| Response table | One row per submitted response. |
-| Individual response | Detailed answers from one respondent. |
-| Cross-tab | Compare answers across two or more questions. |
-| Time trend | Responses over time. |
-| Export | CSV/XLSX/JSON/PDF download. |
+| Report              | Description                                        |
+| ------------------- | -------------------------------------------------- |
+| Overview            | Response count, completion rate, average duration. |
+| Question summary    | Aggregated answers per question.                   |
+| Response table      | One row per submitted response.                    |
+| Individual response | Detailed answers from one respondent.              |
+| Cross-tab           | Compare answers across two or more questions.      |
+| Time trend          | Responses over time.                               |
+| Export              | CSV/XLSX/JSON/PDF download.                        |
 
 ### Report data strategy
 
@@ -759,12 +761,12 @@ Theme config example:
 
 ### Email templates
 
-| Template | Variables |
-|---|---|
-| Invitation | `participantName`, `surveyTitle`, `surveyLink`, `expiryDate` |
-| Reminder | `participantName`, `surveyTitle`, `surveyLink` |
-| Thank you | `participantName`, `surveyTitle` |
-| Export ready | `userName`, `exportLink`, `expiryDate` |
+| Template     | Variables                                                    |
+| ------------ | ------------------------------------------------------------ |
+| Invitation   | `participantName`, `surveyTitle`, `surveyLink`, `expiryDate` |
+| Reminder     | `participantName`, `surveyTitle`, `surveyLink`               |
+| Thank you    | `participantName`, `surveyTitle`                             |
+| Export ready | `userName`, `exportLink`, `expiryDate`                       |
 
 ---
 
@@ -800,12 +802,12 @@ Audit logs should be append-only.
 
 ### File categories
 
-| Category | Description |
-|---|---|
-| Survey asset | Logo, background image. |
+| Category        | Description                  |
+| --------------- | ---------------------------- |
+| Survey asset    | Logo, background image.      |
 | Response upload | File uploaded by respondent. |
-| Export | Generated CSV/XLSX/PDF. |
-| Import | Uploaded participant CSV. |
+| Export          | Generated CSV/XLSX/PDF.      |
+| Import          | Uploaded participant CSV.    |
 
 ---
 
@@ -821,12 +823,12 @@ Audit logs should be append-only.
 
 ### API authentication options
 
-| Method | Use case |
-|---|---|
-| API key | Server-to-server simple integration. |
-| OAuth2 | Larger third-party integration. |
-| Signed URL | Secure redirect to survey. |
-| JWT | Application A passes authenticated user context. |
+| Method     | Use case                                         |
+| ---------- | ------------------------------------------------ |
+| API key    | Server-to-server simple integration.             |
+| OAuth2     | Larger third-party integration.                  |
+| Signed URL | Secure redirect to survey.                       |
+| JWT        | Application A passes authenticated user context. |
 
 ### Example external redirect flow
 
@@ -854,24 +856,24 @@ Do not build a full marketplace in V1. Start with internal extension points.
 
 ### Extension points
 
-| Event | Example use |
-|---|---|
-| `survey.created` | Send notification. |
-| `survey.published` | Generate search index/cache. |
-| `response.started` | Track participant started. |
-| `response.submitted` | Send webhook, update analytics. |
-| `export.created` | Notify user when export is ready. |
-| `participant.imported` | Validate/import custom fields. |
+| Event                  | Example use                       |
+| ---------------------- | --------------------------------- |
+| `survey.created`       | Send notification.                |
+| `survey.published`     | Generate search index/cache.      |
+| `response.started`     | Track participant started.        |
+| `response.submitted`   | Send webhook, update analytics.   |
+| `export.created`       | Notify user when export is ready. |
+| `participant.imported` | Validate/import custom fields.    |
 
 ### Event interface example
 
 ```ts
 type DomainEvent<TPayload> = {
-  id: string
-  type: string
-  payload: TPayload
-  createdAt: Date
-}
+  id: string;
+  type: string;
+  payload: TPayload;
+  createdAt: Date;
+};
 ```
 
 ### Event handling approach
@@ -893,60 +895,60 @@ For V2:
 
 ## 9.1 Admin Use Cases
 
-| Code | Use Case | Actor | Description |
-|---|---|---|---|
-| UC-A01 | Login | Admin User | User logs into admin dashboard. |
-| UC-A02 | Create organization | Super Admin | Create a workspace/organization. |
-| UC-A03 | Invite user | Org Owner/Admin | Invite another admin user. |
-| UC-A04 | Assign role | Org Owner/Admin | Assign permission role to user. |
-| UC-A05 | View audit log | Org Owner/Admin | Review important system actions. |
+| Code   | Use Case            | Actor           | Description                      |
+| ------ | ------------------- | --------------- | -------------------------------- |
+| UC-A01 | Login               | Admin User      | User logs into admin dashboard.  |
+| UC-A02 | Create organization | Super Admin     | Create a workspace/organization. |
+| UC-A03 | Invite user         | Org Owner/Admin | Invite another admin user.       |
+| UC-A04 | Assign role         | Org Owner/Admin | Assign permission role to user.  |
+| UC-A05 | View audit log      | Org Owner/Admin | Review important system actions. |
 
 ## 9.2 Survey Builder Use Cases
 
-| Code | Use Case | Actor | Description |
-|---|---|---|---|
-| UC-S01 | Create survey | Survey Manager | Create new survey draft. |
-| UC-S02 | Edit survey settings | Survey Manager | Update title, description, dates, language. |
-| UC-S03 | Add section/page | Survey Manager | Add survey page/group. |
-| UC-S04 | Add question | Survey Manager | Add question to page. |
-| UC-S05 | Configure answer options | Survey Manager | Add options for choice questions. |
-| UC-S06 | Configure validation | Survey Manager | Required, min/max, regex, etc. |
-| UC-S07 | Configure logic | Survey Manager | Add display/branching rules. |
-| UC-S08 | Preview survey | Survey Manager | Preview before publishing. |
-| UC-S09 | Publish survey | Survey Manager | Create immutable published version. |
-| UC-S10 | Close survey | Survey Manager | Stop accepting responses. |
+| Code   | Use Case                 | Actor          | Description                                 |
+| ------ | ------------------------ | -------------- | ------------------------------------------- |
+| UC-S01 | Create survey            | Survey Manager | Create new survey draft.                    |
+| UC-S02 | Edit survey settings     | Survey Manager | Update title, description, dates, language. |
+| UC-S03 | Add section/page         | Survey Manager | Add survey page/group.                      |
+| UC-S04 | Add question             | Survey Manager | Add question to page.                       |
+| UC-S05 | Configure answer options | Survey Manager | Add options for choice questions.           |
+| UC-S06 | Configure validation     | Survey Manager | Required, min/max, regex, etc.              |
+| UC-S07 | Configure logic          | Survey Manager | Add display/branching rules.                |
+| UC-S08 | Preview survey           | Survey Manager | Preview before publishing.                  |
+| UC-S09 | Publish survey           | Survey Manager | Create immutable published version.         |
+| UC-S10 | Close survey             | Survey Manager | Stop accepting responses.                   |
 
 ## 9.3 Respondent Use Cases
 
-| Code | Use Case | Actor | Description |
-|---|---|---|---|
-| UC-R01 | Open public survey | Respondent | Access survey via public link. |
-| UC-R02 | Open token survey | Participant | Access survey via secure token. |
-| UC-R03 | Answer questions | Respondent | Fill out survey pages. |
-| UC-R04 | Save partial response | Respondent/System | Save progress if enabled. |
-| UC-R05 | Submit response | Respondent | Complete final submission. |
-| UC-R06 | Screen out | System | End survey if respondent does not qualify. |
-| UC-R07 | Quota full | System | Stop survey if quota already full. |
+| Code   | Use Case              | Actor             | Description                                |
+| ------ | --------------------- | ----------------- | ------------------------------------------ |
+| UC-R01 | Open public survey    | Respondent        | Access survey via public link.             |
+| UC-R02 | Open token survey     | Participant       | Access survey via secure token.            |
+| UC-R03 | Answer questions      | Respondent        | Fill out survey pages.                     |
+| UC-R04 | Save partial response | Respondent/System | Save progress if enabled.                  |
+| UC-R05 | Submit response       | Respondent        | Complete final submission.                 |
+| UC-R06 | Screen out            | System            | End survey if respondent does not qualify. |
+| UC-R07 | Quota full            | System            | Stop survey if quota already full.         |
 
 ## 9.4 Reporting Use Cases
 
-| Code | Use Case | Actor | Description |
-|---|---|---|---|
-| UC-P01 | View overview | Analyst | See response count/completion rate. |
-| UC-P02 | View question summary | Analyst | See answer distribution. |
-| UC-P03 | Filter responses | Analyst | Filter by answer/date/status. |
-| UC-P04 | View individual response | Analyst | Inspect one full submission. |
-| UC-P05 | Export responses | Analyst | Export CSV/XLSX/JSON/PDF. |
-| UC-P06 | Generate cross-tab | Analyst | Compare answers between questions. |
+| Code   | Use Case                 | Actor   | Description                         |
+| ------ | ------------------------ | ------- | ----------------------------------- |
+| UC-P01 | View overview            | Analyst | See response count/completion rate. |
+| UC-P02 | View question summary    | Analyst | See answer distribution.            |
+| UC-P03 | Filter responses         | Analyst | Filter by answer/date/status.       |
+| UC-P04 | View individual response | Analyst | Inspect one full submission.        |
+| UC-P05 | Export responses         | Analyst | Export CSV/XLSX/JSON/PDF.           |
+| UC-P06 | Generate cross-tab       | Analyst | Compare answers between questions.  |
 
 ## 9.5 Integration Use Cases
 
-| Code | Use Case | Actor | Description |
-|---|---|---|---|
-| UC-I01 | Create API key | Admin | Create server-to-server key. |
-| UC-I02 | Generate survey link | External App | Get secure survey URL. |
-| UC-I03 | Fetch response data | External App | Pull survey responses. |
-| UC-I04 | Receive webhook | External App | Get notified when response submitted. |
+| Code   | Use Case             | Actor        | Description                           |
+| ------ | -------------------- | ------------ | ------------------------------------- |
+| UC-I01 | Create API key       | Admin        | Create server-to-server key.          |
+| UC-I02 | Generate survey link | External App | Get secure survey URL.                |
+| UC-I03 | Fetch response data  | External App | Pull survey responses.                |
+| UC-I04 | Receive webhook      | External App | Get notified when response submitted. |
 
 ---
 
@@ -1089,246 +1091,246 @@ erDiagram
 
 Stores admin users.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| name | String | Display name. |
-| email | String | Unique. |
+| Column       | Type            | Notes                 |
+| ------------ | --------------- | --------------------- |
+| id           | UUID            | Primary key.          |
+| name         | String          | Display name.         |
+| email        | String          | Unique.               |
 | passwordHash | String nullable | If using credentials. |
-| image | String nullable | Profile image. |
-| status | Enum | ACTIVE, SUSPENDED. |
-| createdAt | DateTime | Created timestamp. |
-| updatedAt | DateTime | Updated timestamp. |
+| image        | String nullable | Profile image.        |
+| status       | Enum            | ACTIVE, SUSPENDED.    |
+| createdAt    | DateTime        | Created timestamp.    |
+| updatedAt    | DateTime        | Updated timestamp.    |
 
 ### Organization
 
 Workspace/company/team.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| name | String | Organization name. |
-| slug | String | Unique URL slug. |
-| settingsJson | JSONB | Default timezone, language, branding. |
-| createdAt | DateTime | Created timestamp. |
-| updatedAt | DateTime | Updated timestamp. |
+| Column       | Type     | Notes                                 |
+| ------------ | -------- | ------------------------------------- |
+| id           | UUID     | Primary key.                          |
+| name         | String   | Organization name.                    |
+| slug         | String   | Unique URL slug.                      |
+| settingsJson | JSONB    | Default timezone, language, branding. |
+| createdAt    | DateTime | Created timestamp.                    |
+| updatedAt    | DateTime | Updated timestamp.                    |
 
 ### OrganizationMember
 
 Many-to-many user membership.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| organizationId | UUID | FK. |
-| userId | UUID | FK. |
-| role | Enum | OWNER, ADMIN, SURVEY_MANAGER, ANALYST, VIEWER. |
-| createdAt | DateTime | Created timestamp. |
+| Column         | Type     | Notes                                          |
+| -------------- | -------- | ---------------------------------------------- |
+| id             | UUID     | Primary key.                                   |
+| organizationId | UUID     | FK.                                            |
+| userId         | UUID     | FK.                                            |
+| role           | Enum     | OWNER, ADMIN, SURVEY_MANAGER, ANALYST, VIEWER. |
+| createdAt      | DateTime | Created timestamp.                             |
 
 ### Survey
 
 Main survey record.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| organizationId | UUID | FK. |
-| title | String | Survey title. |
-| slug | String | Public slug. |
-| description | Text | Survey description. |
-| status | Enum | DRAFT, PUBLISHED, PAUSED, CLOSED, ARCHIVED. |
-| activeVersionId | UUID nullable | Current published version. |
-| settingsJson | JSONB | Runtime settings. |
-| startAt | DateTime nullable | Optional open date. |
-| endAt | DateTime nullable | Optional close date. |
-| createdById | UUID | User who created survey. |
-| createdAt | DateTime | Created timestamp. |
-| updatedAt | DateTime | Updated timestamp. |
+| Column          | Type              | Notes                                       |
+| --------------- | ----------------- | ------------------------------------------- |
+| id              | UUID              | Primary key.                                |
+| organizationId  | UUID              | FK.                                         |
+| title           | String            | Survey title.                               |
+| slug            | String            | Public slug.                                |
+| description     | Text              | Survey description.                         |
+| status          | Enum              | DRAFT, PUBLISHED, PAUSED, CLOSED, ARCHIVED. |
+| activeVersionId | UUID nullable     | Current published version.                  |
+| settingsJson    | JSONB             | Runtime settings.                           |
+| startAt         | DateTime nullable | Optional open date.                         |
+| endAt           | DateTime nullable | Optional close date.                        |
+| createdById     | UUID              | User who created survey.                    |
+| createdAt       | DateTime          | Created timestamp.                          |
+| updatedAt       | DateTime          | Updated timestamp.                          |
 
 ### SurveyVersion
 
 Immutable published/draft version snapshot.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| surveyId | UUID | FK. |
-| versionNumber | Int | 1, 2, 3... |
-| status | Enum | DRAFT, PUBLISHED, ARCHIVED. |
-| schemaJson | JSONB | Full survey schema snapshot. |
-| publishedAt | DateTime nullable | Set when published. |
-| publishedById | UUID nullable | User. |
-| createdAt | DateTime | Created timestamp. |
+| Column        | Type              | Notes                        |
+| ------------- | ----------------- | ---------------------------- |
+| id            | UUID              | Primary key.                 |
+| surveyId      | UUID              | FK.                          |
+| versionNumber | Int               | 1, 2, 3...                   |
+| status        | Enum              | DRAFT, PUBLISHED, ARCHIVED.  |
+| schemaJson    | JSONB             | Full survey schema snapshot. |
+| publishedAt   | DateTime nullable | Set when published.          |
+| publishedById | UUID nullable     | User.                        |
+| createdAt     | DateTime          | Created timestamp.           |
 
 ### SurveyPage
 
 Page/section/group inside a survey version.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| surveyVersionId | UUID | FK. |
-| title | String | Page title. |
-| description | Text nullable | Page intro. |
-| orderIndex | Int | Sort order. |
-| settingsJson | JSONB | Page settings. |
+| Column          | Type          | Notes          |
+| --------------- | ------------- | -------------- |
+| id              | UUID          | Primary key.   |
+| surveyVersionId | UUID          | FK.            |
+| title           | String        | Page title.    |
+| description     | Text nullable | Page intro.    |
+| orderIndex      | Int           | Sort order.    |
+| settingsJson    | JSONB         | Page settings. |
 
 ### Question
 
 Question inside a survey version/page.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| surveyVersionId | UUID | FK. |
-| pageId | UUID | FK. |
-| code | String | Human-readable export code, e.g. `Q1`. |
-| type | String | Question type. |
-| title | Text | Question text. |
-| description | Text nullable | Help text. |
-| orderIndex | Int | Sort order. |
-| isRequired | Boolean | Required flag. |
-| configJson | JSONB | Type-specific config. |
-| validationJson | JSONB | Validation rules. |
-| logicJson | JSONB | Display/branch logic. |
+| Column          | Type          | Notes                                  |
+| --------------- | ------------- | -------------------------------------- |
+| id              | UUID          | Primary key.                           |
+| surveyVersionId | UUID          | FK.                                    |
+| pageId          | UUID          | FK.                                    |
+| code            | String        | Human-readable export code, e.g. `Q1`. |
+| type            | String        | Question type.                         |
+| title           | Text          | Question text.                         |
+| description     | Text nullable | Help text.                             |
+| orderIndex      | Int           | Sort order.                            |
+| isRequired      | Boolean       | Required flag.                         |
+| configJson      | JSONB         | Type-specific config.                  |
+| validationJson  | JSONB         | Validation rules.                      |
+| logicJson       | JSONB         | Display/branch logic.                  |
 
 ### QuestionOption
 
 Answer options for choice/ranking/matrix questions.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| questionId | UUID | FK. |
-| value | String | Stored value. |
-| label | String | Display label. |
-| orderIndex | Int | Sort order. |
-| isOther | Boolean | Is "Other" option. |
-| metadataJson | JSONB | Extra config. |
+| Column       | Type    | Notes              |
+| ------------ | ------- | ------------------ |
+| id           | UUID    | Primary key.       |
+| questionId   | UUID    | FK.                |
+| value        | String  | Stored value.      |
+| label        | String  | Display label.     |
+| orderIndex   | Int     | Sort order.        |
+| isOther      | Boolean | Is "Other" option. |
+| metadataJson | JSONB   | Extra config.      |
 
 ### Participant
 
 Respondent record for private surveys.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| surveyId | UUID | FK. |
-| email | String nullable | Participant email. |
-| name | String nullable | Participant name. |
-| externalId | String nullable | ID from external system. |
-| attributesJson | JSONB | Custom fields. |
-| createdAt | DateTime | Created timestamp. |
+| Column         | Type            | Notes                    |
+| -------------- | --------------- | ------------------------ |
+| id             | UUID            | Primary key.             |
+| surveyId       | UUID            | FK.                      |
+| email          | String nullable | Participant email.       |
+| name           | String nullable | Participant name.        |
+| externalId     | String nullable | ID from external system. |
+| attributesJson | JSONB           | Custom fields.           |
+| createdAt      | DateTime        | Created timestamp.       |
 
 ### Invitation
 
 Private survey token/invitation.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| participantId | UUID | FK. |
-| surveyId | UUID | FK. |
-| tokenHash | String | Secure token hash. |
-| status | Enum | PENDING, SENT, STARTED, COMPLETED, EXPIRED, BOUNCED. |
-| sentAt | DateTime nullable | Sent timestamp. |
-| expiresAt | DateTime nullable | Token expiry. |
-| usedAt | DateTime nullable | Used timestamp. |
+| Column        | Type              | Notes                                                |
+| ------------- | ----------------- | ---------------------------------------------------- |
+| id            | UUID              | Primary key.                                         |
+| participantId | UUID              | FK.                                                  |
+| surveyId      | UUID              | FK.                                                  |
+| tokenHash     | String            | Secure token hash.                                   |
+| status        | Enum              | PENDING, SENT, STARTED, COMPLETED, EXPIRED, BOUNCED. |
+| sentAt        | DateTime nullable | Sent timestamp.                                      |
+| expiresAt     | DateTime nullable | Token expiry.                                        |
+| usedAt        | DateTime nullable | Used timestamp.                                      |
 
 ### ResponseSession
 
 One respondent attempt/submission.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| surveyId | UUID | FK. |
-| surveyVersionId | UUID | FK. |
-| participantId | UUID nullable | FK if private. |
-| invitationId | UUID nullable | FK if token-based. |
-| status | Enum | STARTED, IN_PROGRESS, SUBMITTED, SCREENED_OUT, QUOTA_FULL, ABANDONED, DELETED. |
-| startedAt | DateTime | Started timestamp. |
-| submittedAt | DateTime nullable | Submitted timestamp. |
-| lastActivityAt | DateTime | Last activity. |
-| ipHash | String nullable | Privacy-safe IP hash. |
-| userAgent | String nullable | Optional. |
-| metadataJson | JSONB | Device, UTM, source, etc. |
+| Column          | Type              | Notes                                                                          |
+| --------------- | ----------------- | ------------------------------------------------------------------------------ |
+| id              | UUID              | Primary key.                                                                   |
+| surveyId        | UUID              | FK.                                                                            |
+| surveyVersionId | UUID              | FK.                                                                            |
+| participantId   | UUID nullable     | FK if private.                                                                 |
+| invitationId    | UUID nullable     | FK if token-based.                                                             |
+| status          | Enum              | STARTED, IN_PROGRESS, SUBMITTED, SCREENED_OUT, QUOTA_FULL, ABANDONED, DELETED. |
+| startedAt       | DateTime          | Started timestamp.                                                             |
+| submittedAt     | DateTime nullable | Submitted timestamp.                                                           |
+| lastActivityAt  | DateTime          | Last activity.                                                                 |
+| ipHash          | String nullable   | Privacy-safe IP hash.                                                          |
+| userAgent       | String nullable   | Optional.                                                                      |
+| metadataJson    | JSONB             | Device, UTM, source, etc.                                                      |
 
 ### Answer
 
 One answer to one question.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| responseSessionId | UUID | FK. |
-| questionId | UUID | FK. |
-| valueJson | JSONB | Flexible answer value. |
-| displayValue | Text nullable | Precomputed readable value. |
-| createdAt | DateTime | Created timestamp. |
-| updatedAt | DateTime | Updated timestamp. |
+| Column            | Type          | Notes                       |
+| ----------------- | ------------- | --------------------------- |
+| id                | UUID          | Primary key.                |
+| responseSessionId | UUID          | FK.                         |
+| questionId        | UUID          | FK.                         |
+| valueJson         | JSONB         | Flexible answer value.      |
+| displayValue      | Text nullable | Precomputed readable value. |
+| createdAt         | DateTime      | Created timestamp.          |
+| updatedAt         | DateTime      | Updated timestamp.          |
 
 ### Quota
 
 Quota/screening rule.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| surveyId | UUID | FK. |
-| name | String | Quota name. |
-| limit | Int | Max matching submitted responses. |
-| conditionJson | JSONB | Condition structure. |
-| actionJson | JSONB | Message/redirect/action. |
-| isActive | Boolean | Enabled flag. |
+| Column        | Type    | Notes                             |
+| ------------- | ------- | --------------------------------- |
+| id            | UUID    | Primary key.                      |
+| surveyId      | UUID    | FK.                               |
+| name          | String  | Quota name.                       |
+| limit         | Int     | Max matching submitted responses. |
+| conditionJson | JSONB   | Condition structure.              |
+| actionJson    | JSONB   | Message/redirect/action.          |
+| isActive      | Boolean | Enabled flag.                     |
 
 ### FileAsset
 
 Files uploaded/generated by system.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| organizationId | UUID nullable | FK. |
-| ownerUserId | UUID nullable | FK. |
-| storageKey | String | Object storage key. |
-| filename | String | Original filename. |
-| mimeType | String | MIME type. |
-| sizeBytes | Int | Size. |
-| category | Enum | SURVEY_ASSET, RESPONSE_UPLOAD, EXPORT, IMPORT. |
-| createdAt | DateTime | Created timestamp. |
+| Column         | Type          | Notes                                          |
+| -------------- | ------------- | ---------------------------------------------- |
+| id             | UUID          | Primary key.                                   |
+| organizationId | UUID nullable | FK.                                            |
+| ownerUserId    | UUID nullable | FK.                                            |
+| storageKey     | String        | Object storage key.                            |
+| filename       | String        | Original filename.                             |
+| mimeType       | String        | MIME type.                                     |
+| sizeBytes      | Int           | Size.                                          |
+| category       | Enum          | SURVEY_ASSET, RESPONSE_UPLOAD, EXPORT, IMPORT. |
+| createdAt      | DateTime      | Created timestamp.                             |
 
 ### ExportJob
 
 Export request status.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| surveyId | UUID | FK. |
-| requestedById | UUID | FK user. |
-| type | Enum | CSV, XLSX, JSON, PDF. |
-| status | Enum | QUEUED, PROCESSING, READY, FAILED. |
-| filtersJson | JSONB | Export filters. |
-| fileAssetId | UUID nullable | Generated file. |
-| errorMessage | Text nullable | Failure reason. |
-| createdAt | DateTime | Created timestamp. |
-| completedAt | DateTime nullable | Done timestamp. |
+| Column        | Type              | Notes                              |
+| ------------- | ----------------- | ---------------------------------- |
+| id            | UUID              | Primary key.                       |
+| surveyId      | UUID              | FK.                                |
+| requestedById | UUID              | FK user.                           |
+| type          | Enum              | CSV, XLSX, JSON, PDF.              |
+| status        | Enum              | QUEUED, PROCESSING, READY, FAILED. |
+| filtersJson   | JSONB             | Export filters.                    |
+| fileAssetId   | UUID nullable     | Generated file.                    |
+| errorMessage  | Text nullable     | Failure reason.                    |
+| createdAt     | DateTime          | Created timestamp.                 |
+| completedAt   | DateTime nullable | Done timestamp.                    |
 
 ### AuditLog
 
 Admin/system action log.
 
-| Column | Type | Notes |
-|---|---|---|
-| id | UUID | Primary key. |
-| organizationId | UUID nullable | FK. |
-| actorUserId | UUID nullable | FK. |
-| action | String | e.g. `survey.published`. |
-| entityType | String | e.g. `Survey`. |
-| entityId | UUID nullable | Entity ID. |
-| metadataJson | JSONB | Extra data. |
-| createdAt | DateTime | Timestamp. |
+| Column         | Type          | Notes                    |
+| -------------- | ------------- | ------------------------ |
+| id             | UUID          | Primary key.             |
+| organizationId | UUID nullable | FK.                      |
+| actorUserId    | UUID nullable | FK.                      |
+| action         | String        | e.g. `survey.published`. |
+| entityType     | String        | e.g. `Survey`.           |
+| entityId       | UUID nullable | Entity ID.               |
+| metadataJson   | JSONB         | Extra data.              |
+| createdAt      | DateTime      | Timestamp.               |
 
 ---
 
@@ -1868,9 +1870,7 @@ The `SurveyVersion.schemaJson` stores the complete immutable survey definition u
       "targetQuestionId": "q_002",
       "action": "show",
       "condition": {
-        "all": [
-          { "questionId": "q_001", "operator": "equals", "value": "no" }
-        ]
+        "all": [{ "questionId": "q_001", "operator": "equals", "value": "no" }]
       }
     }
   ]
@@ -1881,10 +1881,10 @@ The `SurveyVersion.schemaJson` stores the complete immutable survey definition u
 
 Use both because each has a purpose:
 
-| Storage | Purpose |
-|---|---|
-| Normalized `Question`, `QuestionOption`, etc. | Querying, editing, reporting, permissions, validation. |
-| `schemaJson` snapshot | Fast immutable runtime rendering and historical accuracy. |
+| Storage                                       | Purpose                                                   |
+| --------------------------------------------- | --------------------------------------------------------- |
+| Normalized `Question`, `QuestionOption`, etc. | Querying, editing, reporting, permissions, validation.    |
+| `schemaJson` snapshot                         | Fast immutable runtime rendering and historical accuracy. |
 
 When publishing a survey:
 
@@ -2063,19 +2063,19 @@ Response:
 
 ## 14.1 Permission Matrix
 
-| Permission | Owner | Admin | Survey Manager | Analyst | Viewer |
-|---|---:|---:|---:|---:|---:|
-| Manage organization settings | Yes | Yes | No | No | No |
-| Manage users | Yes | Yes | No | No | No |
-| Create survey | Yes | Yes | Yes | No | No |
-| Edit survey | Yes | Yes | Yes | No | No |
-| Publish survey | Yes | Yes | Yes | No | No |
-| Close survey | Yes | Yes | Yes | No | No |
-| Manage participants | Yes | Yes | Yes | No | No |
-| View reports | Yes | Yes | Yes | Yes | Yes |
-| Export responses | Yes | Yes | Yes | Yes | No |
-| View audit logs | Yes | Yes | No | No | No |
-| Manage API keys | Yes | Yes | No | No | No |
+| Permission                   | Owner | Admin | Survey Manager | Analyst | Viewer |
+| ---------------------------- | ----: | ----: | -------------: | ------: | -----: |
+| Manage organization settings |   Yes |   Yes |             No |      No |     No |
+| Manage users                 |   Yes |   Yes |             No |      No |     No |
+| Create survey                |   Yes |   Yes |            Yes |      No |     No |
+| Edit survey                  |   Yes |   Yes |            Yes |      No |     No |
+| Publish survey               |   Yes |   Yes |            Yes |      No |     No |
+| Close survey                 |   Yes |   Yes |            Yes |      No |     No |
+| Manage participants          |   Yes |   Yes |            Yes |      No |     No |
+| View reports                 |   Yes |   Yes |            Yes |     Yes |    Yes |
+| Export responses             |   Yes |   Yes |            Yes |     Yes |     No |
+| View audit logs              |   Yes |   Yes |             No |      No |     No |
+| Manage API keys              |   Yes |   Yes |             No |      No |     No |
 
 ## 14.2 Permission check pattern
 
@@ -2094,8 +2094,8 @@ Example:
 await requirePermission({
   userId: session.user.id,
   organizationId,
-  permission: 'survey.publish',
-})
+  permission: "survey.publish",
+});
 ```
 
 ---
@@ -2104,12 +2104,12 @@ await requirePermission({
 
 ## 15.1 Validation levels
 
-| Level | Purpose |
-|---|---|
-| UI validation | Fast feedback to user. |
-| Server validation | Security and data correctness. |
-| Database constraints | Last line of defense. |
-| Publish validation | Ensure survey schema is valid before public use. |
+| Level                | Purpose                                          |
+| -------------------- | ------------------------------------------------ |
+| UI validation        | Fast feedback to user.                           |
+| Server validation    | Security and data correctness.                   |
+| Database constraints | Last line of defense.                            |
+| Publish validation   | Ensure survey schema is valid before public use. |
 
 ## 15.2 Question answer validation
 
@@ -2117,22 +2117,22 @@ Each question type should provide a validator:
 
 ```ts
 type QuestionAnswerValidator = (args: {
-  question: SurveyQuestionSchema
-  value: unknown
-  allAnswers: Record<string, unknown>
-}) => ValidationResult
+  question: SurveyQuestionSchema;
+  value: unknown;
+  allAnswers: Record<string, unknown>;
+}) => ValidationResult;
 ```
 
 Example validation result:
 
 ```ts
 type ValidationResult = {
-  valid: boolean
+  valid: boolean;
   errors: Array<{
-    code: string
-    message: string
-  }>
-}
+    code: string;
+    message: string;
+  }>;
+};
 ```
 
 ## 15.3 Publish validation checklist
@@ -2408,13 +2408,13 @@ Responsibilities:
 Important methods:
 
 ```ts
-createSurvey(input)
-updateSurvey(surveyId, input)
-getSurveyById(surveyId)
-getSurveyDraft(surveyId)
-publishSurvey(surveyId)
-closeSurvey(surveyId)
-archiveSurvey(surveyId)
+createSurvey(input);
+updateSurvey(surveyId, input);
+getSurveyById(surveyId);
+getSurveyDraft(surveyId);
+publishSurvey(surveyId);
+closeSurvey(surveyId);
+archiveSurvey(surveyId);
 ```
 
 ## 20.2 BuilderService
@@ -2429,13 +2429,13 @@ Responsibilities:
 Important methods:
 
 ```ts
-saveDraft(surveyId, draft)
-addPage(surveyId, input)
-updatePage(pageId, input)
-addQuestion(pageId, input)
-updateQuestion(questionId, input)
-deleteQuestion(questionId)
-generateSurveySchema(surveyId)
+saveDraft(surveyId, draft);
+addPage(surveyId, input);
+updatePage(pageId, input);
+addQuestion(pageId, input);
+updateQuestion(questionId, input);
+deleteQuestion(questionId);
+generateSurveySchema(surveyId);
 ```
 
 ## 20.3 RuntimeService
@@ -2451,11 +2451,11 @@ Responsibilities:
 Important methods:
 
 ```ts
-loadPublicSurvey(slug)
-loadTokenSurvey(token)
-startSession(surveyId, context)
-saveAnswers(sessionId, answers)
-submitResponse(sessionId, answers)
+loadPublicSurvey(slug);
+loadTokenSurvey(token);
+startSession(surveyId, context);
+saveAnswers(sessionId, answers);
+submitResponse(sessionId, answers);
 ```
 
 ## 20.4 LogicEngine
@@ -2470,10 +2470,10 @@ Responsibilities:
 Important methods:
 
 ```ts
-evaluateCondition(condition, answers)
-getVisibleQuestions(schema, answers)
-getNextPage(schema, currentPageId, answers)
-evaluateQuotas(surveyId, answers)
+evaluateCondition(condition, answers);
+getVisibleQuestions(schema, answers);
+getNextPage(schema, currentPageId, answers);
+evaluateQuotas(surveyId, answers);
 ```
 
 ## 20.5 ReportService
@@ -2489,10 +2489,10 @@ Responsibilities:
 Important methods:
 
 ```ts
-getOverview(surveyId, filters)
-getQuestionSummary(surveyId, questionId, filters)
-getResponseTable(surveyId, filters)
-getResponseDetail(responseSessionId)
+getOverview(surveyId, filters);
+getQuestionSummary(surveyId, questionId, filters);
+getResponseTable(surveyId, filters);
+getResponseDetail(responseSessionId);
 ```
 
 ## 20.6 ExportService
@@ -2507,9 +2507,9 @@ Responsibilities:
 Important methods:
 
 ```ts
-requestExport(surveyId, type, filters)
-processExportJob(exportJobId)
-buildFlatRows(surveyVersion, responses)
+requestExport(surveyId, type, filters);
+processExportJob(exportJobId);
+buildFlatRows(surveyVersion, responses);
 ```
 
 ---
@@ -2521,10 +2521,10 @@ buildFlatRows(surveyVersion, responses)
 The logic engine needs a consistent way to read answers.
 
 ```ts
-type AnswerMap = Record<string, unknown>
+type AnswerMap = Record<string, unknown>;
 
 function getAnswerValue(answers: AnswerMap, questionId: string) {
-  return answers[questionId]
+  return answers[questionId];
 }
 ```
 
@@ -2533,15 +2533,15 @@ function getAnswerValue(answers: AnswerMap, questionId: string) {
 ```ts
 function evaluateCondition(condition, answers) {
   if (condition.all) {
-    return condition.all.every((c) => evaluateCondition(c, answers))
+    return condition.all.every((c) => evaluateCondition(c, answers));
   }
 
   if (condition.any) {
-    return condition.any.some((c) => evaluateCondition(c, answers))
+    return condition.any.some((c) => evaluateCondition(c, answers));
   }
 
-  const answer = getAnswerValue(answers, condition.questionId)
-  return evaluateOperator(answer, condition.operator, condition.value)
+  const answer = getAnswerValue(answers, condition.questionId);
+  return evaluateOperator(answer, condition.operator, condition.value);
 }
 ```
 
@@ -2549,22 +2549,22 @@ function evaluateCondition(condition, answers) {
 
 ```ts
 function getVisibleQuestions(schema, answers) {
-  const hidden = new Set()
-  const visible = new Set(schema.questions.map(q => q.id))
+  const hidden = new Set();
+  const visible = new Set(schema.questions.map((q) => q.id));
 
   for (const rule of schema.logicRules) {
-    const matched = evaluateCondition(rule.condition, answers)
+    const matched = evaluateCondition(rule.condition, answers);
 
-    if (rule.action === 'show') {
-      if (!matched) hidden.add(rule.targetQuestionId)
+    if (rule.action === "show") {
+      if (!matched) hidden.add(rule.targetQuestionId);
     }
 
-    if (rule.action === 'hide') {
-      if (matched) hidden.add(rule.targetQuestionId)
+    if (rule.action === "hide") {
+      if (matched) hidden.add(rule.targetQuestionId);
     }
   }
 
-  return schema.questions.filter(q => !hidden.has(q.id))
+  return schema.questions.filter((q) => !hidden.has(q.id));
 }
 ```
 
@@ -2694,13 +2694,13 @@ SMTP_PASSWORD=""
 
 ## 24.1 Expected bottlenecks
 
-| Area | Risk | Solution |
-|---|---|---|
-| Public survey traffic | Many respondents at once | Cache survey schema, optimize runtime. |
-| Response submission | High write volume | Batch writes, indexed tables. |
-| Reports | Heavy aggregation | Precompute aggregates or use materialized views. |
-| Exports | Large file generation | Background jobs. |
-| File uploads | Large files | Direct-to-S3 upload. |
+| Area                  | Risk                     | Solution                                         |
+| --------------------- | ------------------------ | ------------------------------------------------ |
+| Public survey traffic | Many respondents at once | Cache survey schema, optimize runtime.           |
+| Response submission   | High write volume        | Batch writes, indexed tables.                    |
+| Reports               | Heavy aggregation        | Precompute aggregates or use materialized views. |
+| Exports               | Large file generation    | Background jobs.                                 |
+| File uploads          | Large files              | Direct-to-S3 upload.                             |
 
 ## 24.2 Caching strategy
 
@@ -2770,14 +2770,14 @@ Test with Playwright:
 
 ## 25.4 Critical test cases
 
-| Area | Test |
-|---|---|
-| Versioning | Old response still valid after survey is edited. |
-| Logic | Hidden required question does not block submission. |
-| Token | Used single-use token cannot submit again. |
-| Quota | Quota full blocks matching respondents. |
-| Export | Export columns match published version question codes. |
-| Permissions | Viewer cannot export responses. |
+| Area        | Test                                                   |
+| ----------- | ------------------------------------------------------ |
+| Versioning  | Old response still valid after survey is edited.       |
+| Logic       | Hidden required question does not block submission.    |
+| Token       | Used single-use token cannot submit again.             |
+| Quota       | Quota full blocks matching respondents.                |
+| Export      | Export columns match published version question codes. |
+| Permissions | Viewer cannot export responses.                        |
 
 ---
 
@@ -2906,20 +2906,20 @@ Reason: the survey builder + runtime + reporting core is already a large system.
 
 # 28. Comparison with LimeSurvey Concepts
 
-| LimeSurvey Concept | New System Concept |
-|---|---|
-| Survey | Survey |
-| Question group | SurveyPage / Section |
-| Question | Question |
-| Answer options | QuestionOption |
-| Conditions | LogicRule / logicJson |
-| Tokens | Participant + Invitation |
-| Dynamic survey response table | ResponseSession + Answer |
-| Export responses | ExportJob + ReportService |
-| Templates/themes | Theme settings JSON |
-| Plugins | Domain events + internal modules |
-| RemoteControl API | Integration API `/api/v1/*` |
-| Statistics | ReportService + Analytics module |
+| LimeSurvey Concept            | New System Concept               |
+| ----------------------------- | -------------------------------- |
+| Survey                        | Survey                           |
+| Question group                | SurveyPage / Section             |
+| Question                      | Question                         |
+| Answer options                | QuestionOption                   |
+| Conditions                    | LogicRule / logicJson            |
+| Tokens                        | Participant + Invitation         |
+| Dynamic survey response table | ResponseSession + Answer         |
+| Export responses              | ExportJob + ReportService        |
+| Templates/themes              | Theme settings JSON              |
+| Plugins                       | Domain events + internal modules |
+| RemoteControl API             | Integration API `/api/v1/*`      |
+| Statistics                    | ReportService + Analytics module |
 
 ---
 
@@ -2985,14 +2985,14 @@ npx prisma --version
 
 ## 30.1 Naming
 
-| Item | Convention | Example |
-|---|---|---|
-| DB model | PascalCase | `SurveyVersion` |
-| DB field | camelCase | `createdAt` |
-| Route folder | kebab-case | `audit-logs` |
-| Feature folder | kebab-case | `survey-builder` |
-| TypeScript type | PascalCase | `SurveySchema` |
-| Constants | UPPER_SNAKE_CASE | `MAX_FILE_SIZE` |
+| Item            | Convention       | Example          |
+| --------------- | ---------------- | ---------------- |
+| DB model        | PascalCase       | `SurveyVersion`  |
+| DB field        | camelCase        | `createdAt`      |
+| Route folder    | kebab-case       | `audit-logs`     |
+| Feature folder  | kebab-case       | `survey-builder` |
+| TypeScript type | PascalCase       | `SurveySchema`   |
+| Constants       | UPPER_SNAKE_CASE | `MAX_FILE_SIZE`  |
 
 ## 30.2 Service rule
 
@@ -3013,9 +3013,9 @@ class AppError extends Error {
   constructor(
     public code: string,
     public message: string,
-    public statusCode: number = 400,
+    public statusCode: number = 400
   ) {
-    super(message)
+    super(message);
   }
 }
 ```
@@ -3213,17 +3213,17 @@ flowchart TD
 
 # 35. Future Advanced Features
 
-| Feature | Notes |
-|---|---|
-| Multi-language surveys | Add translation tables for survey/page/question/option text. |
-| Real-time collaboration | Use WebSockets/Liveblocks/Yjs. |
-| Advanced ExpressionScript | Build formula parser/evaluator. |
-| Offline survey mode | PWA + local storage sync. |
-| White-label domains | Custom domains per organization. |
-| Advanced quotas | Nested quota groups and priority rules. |
-| Webhook retries | Retry failed webhooks with exponential backoff. |
-| BI connector | Export to Bold BI/Power BI using views/API. |
-| Audit compliance | Immutable logs and retention policies. |
+| Feature                   | Notes                                                        |
+| ------------------------- | ------------------------------------------------------------ |
+| Multi-language surveys    | Add translation tables for survey/page/question/option text. |
+| Real-time collaboration   | Use WebSockets/Liveblocks/Yjs.                               |
+| Advanced ExpressionScript | Build formula parser/evaluator.                              |
+| Offline survey mode       | PWA + local storage sync.                                    |
+| White-label domains       | Custom domains per organization.                             |
+| Advanced quotas           | Nested quota groups and priority rules.                      |
+| Webhook retries           | Retry failed webhooks with exponential backoff.              |
+| BI connector              | Export to Bold BI/Power BI using views/API.                  |
+| Audit compliance          | Immutable logs and retention policies.                       |
 
 ---
 
@@ -3290,15 +3290,15 @@ Recommended: **Start with API + CSV export. Add materialized views later.**
 
 # 37. Important Risks
 
-| Risk | Impact | Mitigation |
-|---|---|---|
-| Builder complexity grows too fast | Development delay | Limit MVP question types. |
-| Logic engine becomes too complex | Bugs in runtime | Build strong tests for conditions. |
-| Reports become slow | Bad UX | Add aggregates/materialized views. |
-| Survey edits break responses | Data corruption | Use immutable versions. |
-| Token privacy issues | Security problem | Hash tokens and separate identity from answers. |
-| File upload abuse | Storage/security issue | Limit size/type, scan files. |
-| Permission bugs | Data leak | Server-side RBAC for every action. |
+| Risk                              | Impact                 | Mitigation                                      |
+| --------------------------------- | ---------------------- | ----------------------------------------------- |
+| Builder complexity grows too fast | Development delay      | Limit MVP question types.                       |
+| Logic engine becomes too complex  | Bugs in runtime        | Build strong tests for conditions.              |
+| Reports become slow               | Bad UX                 | Add aggregates/materialized views.              |
+| Survey edits break responses      | Data corruption        | Use immutable versions.                         |
+| Token privacy issues              | Security problem       | Hash tokens and separate identity from answers. |
+| File upload abuse                 | Storage/security issue | Limit size/type, scan files.                    |
+| Permission bugs                   | Data leak              | Server-side RBAC for every action.              |
 
 ---
 

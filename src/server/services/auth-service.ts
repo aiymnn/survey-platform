@@ -7,10 +7,14 @@ export class AuthService {
    * Registers a new user and creates a personal organization workspace for them.
    * Retries upon unique constraint failures to ensure username/slug robustness.
    */
-  static async registerUser(data: { name?: string; email: string; passwordHash: string }) {
+  static async registerUser(data: {
+    name?: string;
+    email: string;
+    passwordHash: string;
+  }) {
     const baseName = data.name || data.email.split("@")[0] || "User";
     const slugBase = baseName.toLowerCase().replace(/[^a-z0-9]/g, "-");
-    
+
     let retries = 0;
     const MAX_RETRIES = 5;
 
@@ -52,11 +56,18 @@ export class AuthService {
           return user;
         });
       } catch (err) {
-        if (err && typeof err === "object" && "code" in err && (err as { code: string }).code === "P2002") {
+        if (
+          err &&
+          typeof err === "object" &&
+          "code" in err &&
+          (err as { code: string }).code === "P2002"
+        ) {
           // Unique constraint failed. Retry.
           retries++;
           if (retries >= MAX_RETRIES) {
-            throw new Error("Unable to generate a unique username/organization slug. Please try a different name.");
+            throw new Error(
+              "Unable to generate a unique username/organization slug. Please try a different name."
+            );
           }
           continue;
         }

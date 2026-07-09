@@ -5,7 +5,10 @@ export class UserService {
   /**
    * Updates the global identity profile for a user.
    */
-  static async updateProfile(userId: string, data: { username: string; email: string }) {
+  static async updateProfile(
+    userId: string,
+    data: { username: string; email: string }
+  ) {
     // Check if email or username already exists on another user
     const existingUser = await prisma.user.findFirst({
       where: {
@@ -16,7 +19,10 @@ export class UserService {
 
     if (existingUser) {
       if (existingUser.email === data.email) {
-        throw new AppError("Email is already in use by another user.", "CONFLICT");
+        throw new AppError(
+          "Email is already in use by another user.",
+          "CONFLICT"
+        );
       }
       if (existingUser.username === data.username) {
         throw new AppError("Username is already taken.", "CONFLICT");

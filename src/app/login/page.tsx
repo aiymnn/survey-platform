@@ -29,7 +29,7 @@ export default async function LoginPage() {
             </span>
           </Link>
         </div>
-        
+
         <LoginForm />
       </div>
     </main>

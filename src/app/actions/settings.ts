@@ -14,7 +14,9 @@ export async function updateProfileSettings(formData: FormData) {
     }
 
     if (session.user.role !== "SUPERADMIN") {
-      return { error: "Only Superadmins can update global app identity settings." };
+      return {
+        error: "Only Superadmins can update global app identity settings.",
+      };
     }
 
     const username = formData.get("username") as string;
