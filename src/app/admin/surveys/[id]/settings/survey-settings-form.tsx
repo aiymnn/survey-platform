@@ -44,7 +44,7 @@ export function SurveySettingsForm({ surveyId, initialData }: SurveySettingsForm
       try {
         await updateSurveyMetadataAction(surveyId, data);
         toast.success("Survey settings updated successfully!");
-      } catch (error) {
+      } catch {
         toast.error("Failed to update settings. Please try again.");
       }
     });

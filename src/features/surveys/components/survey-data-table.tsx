@@ -99,7 +99,7 @@ export function SurveyDataTable({ surveys }: SurveyDataTableProps) {
         if (remainingOnPage === 0 && currentPage > 1) {
           setCurrentPage(prev => prev - 1);
         }
-      } catch (e) {
+      } catch {
         toast.error("Failed to delete surveys");
       }
     });

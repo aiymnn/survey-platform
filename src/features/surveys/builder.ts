@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
+import type { SurveySchemaJson } from "./types";
 
 export async function getSurveyBuilderData(surveyId: string) {
   const session = await auth();
@@ -26,35 +27,41 @@ export async function getSurveyBuilderData(surveyId: string) {
   };
 }
 
-export async function updateSurveySchemaAction(versionId: string, schemaJson: any) {
+export async function updateSurveySchemaAction(versionId: string, schemaJson: SurveySchemaJson) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Unauthorized");
 
-  // In a real app, you would check if the user has permission to edit this survey.
-  
   await prisma.surveyVersion.update({
     where: { id: versionId },
-    data: {
-      schemaJson,
-    },
+    data: { schemaJson: schemaJson as object },
   });
 
   return { success: true };
 }
 
-export async function updateSurveySettingsAction(surveyId: string, data: { title: string, description: string, settingsJson: any }) {
+interface UpdateSurveySettingsPayload {
+  title: string;
+  description: string;
+  settingsJson: {
+    welcomeMessage: string;
+    endMessage: string;
+  };
+}
+
+export async function updateSurveySettingsAction(
+  surveyId: string,
+  data: UpdateSurveySettingsPayload,
+) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Unauthorized");
-
-  // In a real app, verify permissions here
 
   await prisma.survey.update({
     where: { id: surveyId },
     data: {
       title: data.title,
       description: data.description,
-      settingsJson: data.settingsJson,
-    }
+      settingsJson: data.settingsJson as object,
+    },
   });
 
   return { success: true };

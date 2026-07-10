@@ -20,3 +20,11 @@ export interface SurveySchemaJson {
   description: string;
   questions: QuestionSchema[];
 }
+
+/** Editable settings for a survey — used in both the builder form and server actions. */
+export interface SurveySettingsData {
+  title: string;
+  description: string;
+  welcomeMessage: string;
+  endMessage: string;
+}

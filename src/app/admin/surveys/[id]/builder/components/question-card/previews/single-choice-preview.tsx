@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import { QuestionSchema, QuestionOption } from "@/features/surveys/types";
+import { QuestionSchema } from "@/features/surveys/types";
 
 interface SingleChoicePreviewProps {
   question: QuestionSchema;

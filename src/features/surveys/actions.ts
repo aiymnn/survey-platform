@@ -4,9 +4,8 @@ import { prisma } from "@/lib/prisma";
 
 import { auth } from "@/auth";
 import { createSurvey } from "./service";
-import { createSurveySchema, type CreateSurveyInput } from "./validators";
+import { createSurveySchema, updateSurveySettingsSchema, type CreateSurveyInput } from "./validators";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 export async function createSurveyAction(input: CreateSurveyInput) {
   const session = await auth();
@@ -25,27 +24,34 @@ export async function createSurveyAction(input: CreateSurveyInput) {
   return { id: survey.id };
 }
 
-export async function updateSurveyMetadataAction(surveyId: string, input: any) {
+export async function updateSurveyMetadataAction(
+  surveyId: string,
+  input: { title: string; description?: string; welcomeMessage?: string; endMessage?: string },
+) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Unauthorized");
+
+  const parsed = updateSurveySettingsSchema.safeParse(input);
+  if (!parsed.success) throw new Error("Invalid input");
 
   // In a real app, verify ownership
   const currentSurvey = await prisma.survey.findUnique({ where: { id: surveyId } });
   if (!currentSurvey) throw new Error("Survey not found");
 
-  const settingsObj = currentSurvey.settingsJson && typeof currentSurvey.settingsJson === 'object' 
-    ? (currentSurvey.settingsJson as any) 
-    : {};
+  const existingSettings =
+    currentSurvey.settingsJson && typeof currentSurvey.settingsJson === "object"
+      ? (currentSurvey.settingsJson as Record<string, unknown>)
+      : {};
 
   await prisma.survey.update({
     where: { id: surveyId },
     data: {
-      title: input.title,
-      description: input.description,
+      title: parsed.data.title,
+      description: parsed.data.description,
       settingsJson: {
-        ...settingsObj,
-        welcomeMessage: input.welcomeMessage,
-        endMessage: input.endMessage,
+        ...existingSettings,
+        welcomeMessage: parsed.data.welcomeMessage,
+        endMessage: parsed.data.endMessage,
       }
     }
   });

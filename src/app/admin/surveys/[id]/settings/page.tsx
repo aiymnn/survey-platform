@@ -19,9 +19,11 @@ export default async function SettingsPage(props: SettingsPageProps) {
   }
 
   // Extract welcome/end messages from settingsJson
-  const settings = typeof survey.settingsJson === 'object' && survey.settingsJson !== null 
-    ? (survey.settingsJson as any) 
-    : {};
+  type SettingsJson = { welcomeMessage?: string; endMessage?: string };
+  const settings: SettingsJson =
+    typeof survey.settingsJson === "object" && survey.settingsJson !== null
+      ? (survey.settingsJson as SettingsJson)
+      : {};
 
   return (
     <main className="p-4 lg:p-8 flex-1 overflow-y-auto">
